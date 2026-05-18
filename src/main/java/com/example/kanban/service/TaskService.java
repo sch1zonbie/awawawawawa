@@ -1,0 +1,43 @@
+package com.example.kanban.service;
+
+import com.example.kanban.model.Task;
+import com.example.kanban.repository.TaskRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+
+//автосоздание конструктора для TaskRepository
+@RequiredArgsConstructor
+public class TaskService {
+
+    private final TaskRepository repo;
+
+    public List<Task> getAll() {
+        return repo.findAll();
+    }
+
+    public Task create(Task task) {
+        return repo.save(task);
+    }
+
+    public Task updateTitle(Long id, String title) {
+        Task task = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Таска не найдена: " + id));
+        task.setTitle(title);
+        return repo.save(task);
+    }
+
+    public Task updateStatus(Long id, Task.Status status) {
+        Task task = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Таска не найдена: " + id));
+        task.setStatus(status);
+        return repo.save(task);
+    }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
+}

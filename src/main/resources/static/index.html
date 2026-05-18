@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>my copy of bitrix</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+
+    <header class="top-bar">
+        <div class="top-left">
+            <button class="menu-btn">
+                <img src="images/icons/menu_button.svg" alt="menu" class="top-svg-icon">
+            </button>
+            <span class="logo">Битрикс24</span>
+        </div>
+
+        <nav class="top-nav">
+            <a href="#">Лента</a>
+            <a href="#">Мессенджер</a>
+            <a href="#">Календарь</a>
+            <a href="#">Документы</a>
+            <a href="#">Доски</a>
+            <a href="#">Диск</a>
+            <a href="#">Почта</a>
+            <a href="#" class="nav-pill">Ещё</a>
+        </nav>
+
+        <div class="top-right">
+            <div class="search-box">
+                <img src="images/icons/search.svg" alt="" class="top-svg-icon muted">
+                <span class="logo">Битрикс24</span>
+            </div>
+            <div class="top-icon-group">
+                <button class="top-icon-btn">
+                    <img src="images/icons/add-person.svg" alt="" class="top-svg-icon">
+                </button>
+                <button class="top-icon-btn" style="background: green;">
+                    <img src="images/icons/rocket.svg" alt="" class="top-svg-icon">
+                </button>
+                <div class="badge-wrap">
+                    <button class="top-icon-btn">
+                        <img src="images/icons/question%20(1).svg" alt="" class="top-svg-icon">
+                    </button>
+                </div>
+            </div>
+            <div class="top-clock">
+                <span class="clock-dot">
+                    <img src="images/icons/clock.svg" alt="" style="width: 17px; height: 17px; filter: brightness(0) invert(1);">
+                </span>
+                <span id="clock-time">00:00</span>
+            </div>
+            <div class="avatar">
+                <img src="images/icons/ui-user.svg" alt="" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+            </div>
+        </div>
+    </header>
+
+    <aside class="sidebar">
+        <div class="sidebar-section-label">
+            <img src="images/icons/collaboration.svg" alt="" class="sidebar-icon">
+            <span>Совместная работа</span>
+        </div>
+
+        <a href="#" class="sidebar-item has-badge-item">
+            <img src="images/icons/messenger.svg" alt="" class="sidebar-icon">
+            <span>Мессенджер</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/feed.svg" alt="" class="sidebar-icon">
+            <span>Лента</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/collaborations.svg" alt="" class="sidebar-icon">
+            <span>Коллабы</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/callender.svg" alt="" class="sidebar-icon">
+            <span>Календарь</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/documents.svg" alt="" class="sidebar-icon">
+            <span>Документы</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/boards.svg" alt="" class="sidebar-icon">
+            <span>Доски</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/disk.svg" alt="" class="sidebar-icon">
+            <span>Диск</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/mail.svg" alt="" class="sidebar-icon">
+            <span>Почта</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/groups.svg" alt="" class="sidebar-icon">
+            <span>Группы</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/tasks-n-projects.svg" alt="" class="sidebar-icon">
+            <span>Задачи и Проекты</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/CRM.svg" alt="" class="sidebar-icon">
+            <span>CRM</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/online-booking.svg" alt="" class="sidebar-icon">
+            <span>Онлайн-запись</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/inventory-management.svg" alt="" class="sidebar-icon">
+            <span>Складской учёт</span>
+        </a>
+        <a href="#" class="sidebar-item">
+            <img src="images/icons/settings.svg" alt="" class="sidebar-icon">
+            <span>Настройки</span>
+        </a>
+
+        <div class="sidebar-bottom">
+            <button class="expand-tariff">
+                <img src="images/icons/rocket.svg" alt="" class="sidebar-icon">
+                Расширить тариф
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="project-header">
+            <div class="project-title-row">
+
+                <span class="project-title">Мой проект</span>
+                <div class="project-actions">
+                    <button class="btn-video">Видеозвонок</button>
+                    <button class="btn-secondary">О проекте</button>
+                    <button class="btn-icon-dots">...</button>
+                </div>
+            </div>
+            <div class="content-tabs">
+                <a href="#" class="tab active">Задачи</a>
+                <a href="#" class="tab">Лента</a>
+                <a href="#" class="tab">Календарь</a>
+                <a href="#" class="tab">Диск</a>
+                <a href="#" class="tab">Ещё <span class="arrow">▾</span></a>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <div class="filter-left">
+                <span class="filter-title">Задачи группы</span>
+                <button class="btn-create">+ Создать</button>
+                <button class="filter-btn">Все роли</button>
+                <div class="filter-search">
+                    <span>фильтр + поиск</span>
+                </div>
+            </div>
+            <button class="filter-settings-btn"><img src="images/icons/settings.svg" style="color: var(--text)" alt=""></button>
+        </div>
+
+        <div class="view-bar">
+            <div class="view-tabs">
+                <a href="#" class="vtab">Список</a>
+                <a href="#" class="vtab active">Канбан</a>
+                <a href="#" class="vtab">Сроки</a>
+                <a href="#" class="vtab">Мой план</a>
+                <a href="#" class="vtab">Календарь</a>
+                <a href="#" class="vtab">Гант</a>
+                <span class="vtab"><span class="stat-num">0</span> Чаты задач</span>
+                <span class="vtab"><span class="stat-num">0</span> Просрочены</span>
+                <span class="vtab"><span class="stat-num">0</span> Комментарии</span>
+            </div>
+            <div class="view-bar-right">
+                <button class="btn-icon-only">✉</button>
+                <button class="btn-icon-only">···</button>
+                <button class="btn-icon-only">▾</button>
+            </div>
+        </div>
+
+        <div class="kanban-board">
+            <div class="kanban-col" data-status="NEW">
+                <div class="col-header col-new">
+                    <span class="col-name">Новые</span>
+                    <span class="col-count">(0)</span>
+                    <button class="col-add-btn" data-status="NEW">+</button>
+                </div>
+                <div class="col-body" id="col-NEW"></div>
+                <div class="quick-form" id="form-NEW" style="display:none;">
+                    <textarea class="quick-input" placeholder="Название #тег" rows="3"></textarea>
+                    <div class="quick-hint">Нажмите ↵ Enter чтобы создать</div>
+                </div>
+            </div>
+
+            <div class="kanban-col" data-status="IN_PROGRESS">
+                <div class="col-header col-progress">
+                    <span class="col-name">Выполняются</span>
+                    <span class="col-count">(0)</span>
+                    <button class="col-add-btn" data-status="IN_PROGRESS">+</button>
+                </div>
+                <div class="col-body" id="col-IN_PROGRESS"></div>
+                <div class="quick-form" id="form-IN_PROGRESS" style="display:none;">
+                    <textarea class="quick-input" placeholder="Название #тег" rows="3"></textarea>
+                    <div class="quick-hint">Нажмите ↵ Enter чтобы создать</div>
+                </div>
+            </div>
+
+            <div class="kanban-col" data-status="DONE">
+                <div class="col-header col-done">
+                    <span class="col-name">Сделаны</span>
+                    <span class="col-count">(0)</span>
+                    <button class="col-add-btn" data-status="DONE">+</button>
+                </div>
+                <div class="col-body" id="col-DONE"></div>
+                <div class="quick-form" id="form-DONE" style="display:none;">
+                    <textarea class="quick-input" placeholder="Название #тег" rows="3"></textarea>
+                    <div class="quick-hint">Нажмите ↵ Enter чтобы создать</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <aside class="right-rail">
+        <button class="rail-btn">
+            <img src="images/icons/notification.svg" alt="" class="rail-svg">
+        </button>
+        <button class="rail-btn">
+            <img src="images/icons/open-channels.svg" alt="" class="rail-svg">
+        </button>
+        <button class="rail-btn">
+            <img src="images/icons/copilot.svg" alt="" class="rail-svg">
+        </button>
+        <div class="rail-divider"></div>
+    </aside>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none;">
+    <div class="modal">
+        <div class="modal-header">
+            <span>редактирование</span>
+            <button class="modal-close" id="modal-close">✕</button>
+        </div>
+        <input class="modal-input" id="modal-title" placeholder="Название задачи">
+        <div class="modal-actions">
+            <button class="btn-primary" id="modal-save">Сохранить</button>
+            <button class="btn-danger" id="modal-delete">Удалить</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="create-modal" style="display:none;">
+    <div class="modal">
+        <div class="modal-header">
+            <span>Новая задача</span>
+            <button class="modal-close" id="create-modal-close">✕</button>
+        </div>
+
+        <div class="modal-field">
+            <input class="modal-input" id="create-title" placeholder="Название задачи">
+        </div>
+
+        <div class="modal-field">
+            <textarea class="modal-input modal-textarea" id="create-desc" placeholder="Описание" rows="3"></textarea>
+        </div>
+
+        <div class="modal-field">
+            <label class="modal-label">Выполнить до</label>
+            <input class="modal-input" id="create-deadline" type="date">
+        </div>
+
+        <div class="modal-field">
+            <label class="modal-label">Исполнитель</label>
+            <input class="modal-input" id="create-assignee" placeholder="Имя исполнителя">
+        </div>
+
+        <div class="modal-field">
+            <label class="modal-label">Приоритет</label>
+            <select class="modal-input" id="create-priority">
+                <option value="LOW">Низкий</option>
+                <option value="MEDIUM" selected>Средний</option>
+                <option value="HIGH">Высокий</option>
+            </select>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-primary" id="create-modal-save">Создать</button>
+            <button class="btn-danger" id="create-modal-delete" style="display:none;">Удалить</button>
+            <button class="btn-secondary" id="create-modal-cancel">Отмена</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
