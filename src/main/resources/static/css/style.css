@@ -41,6 +41,9 @@ body {
     backdrop-filter: blur(4px);
     border-bottom: 1px solid var(--border);
     gap: 4px;
+
+    position: relative;
+    z-index: 1000;
 }
 
 .top-left {
@@ -51,6 +54,7 @@ body {
     min-width: var(--sidebar-w);
     border-right: 1px solid var(--border);
     height: 100%;
+    position: relative;
 }
 
 .menu-btn {
@@ -60,7 +64,49 @@ body {
     padding: 4px;
     display: flex;
     align-items: center;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
 }
+
+.menu-btn img {
+    pointer-events: none;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: var(--sidebar-w);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    z-index: 9999;
+
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+
+.dropdown-content.show {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.dropdown-content a {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 15px;
+    transition: background 0.15s;
+}
+
+.dropdown-content a:hover {background: rgba(255, 255, 255, 0.05);}
+.show {display:block;}
 
 .logo {
     font-size: 20px;
@@ -157,6 +203,7 @@ body {
 .top-svg-icon.muted { opacity: 1; }
 
 .sidebar {
+    transition: margin-top 0.3s ease;
     grid-column: 1;
     grid-row: 2;
     background: rgba(255, 255, 255, 0.05);
@@ -166,6 +213,7 @@ body {
     display: flex;
     flex-direction: column;
     padding-bottom: 0;
+    z-index: 900;
 }
 .sidebar::-webkit-scrollbar { width: 3px; }
 .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
@@ -459,7 +507,6 @@ body {
 }
 .quick-task-btn:hover { background: rgba(255,255,255,0.1); color: var(--text); }
 
-/*ЭТО НЕАКТУАЛЬНОЕ ГАВНО НАДО ПОМЕНЯТЬ*/
 .quick-input {
     background: rgba(255,255,255,1);
     border: 1px solid rgba(255,255,255,0.12);
@@ -513,7 +560,7 @@ body {
     background: white;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
-    padding: 20px; width: 360px;
+    padding: 20px; width: 500px;
     display: flex; flex-direction: column; gap: 12px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
@@ -535,11 +582,16 @@ body {
 .modal-input:focus { border-color: #5b8ef0; }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
 .btn-primary {
-    background: var(--blue); color: #fff; border: none;
+    background: var(--blue); color: var(--text); border: none;
     border-radius: 6px; padding: 7px 16px; font-size: 12px; cursor: pointer;
 }
 .btn-danger {
-    background: #c0392b; color: #fff; border: none;
+    background: #c0392b; color: var(--text); border: none;
+    border-radius: 6px; padding: 7px 16px; font-size: 12px; cursor: pointer;
+}
+
+.btn-cancel {
+    background: gray; color: var(--text); border: none;
     border-radius: 6px; padding: 7px 16px; font-size: 12px; cursor: pointer;
 }
 

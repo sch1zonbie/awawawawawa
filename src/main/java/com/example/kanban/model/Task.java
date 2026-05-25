@@ -3,6 +3,8 @@ package com.example.kanban.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table
 @Data
@@ -15,7 +17,19 @@ public class Task {
     @Column(nullable = false)
     private String title;
 
-    //чтобы сохранять статусы NEW, IN_PROGRESS, DONE в виде строк, а не в виде чисел
+    private String description;
+
+    private LocalDate deadline;
+
+    private String assignee;
+
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
+
+    public enum Priority {
+        LOW, MEDIUM, HIGH
+    }
+
     @Enumerated(EnumType.STRING)
     private Status status;
 

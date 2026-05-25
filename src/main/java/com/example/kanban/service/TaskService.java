@@ -40,4 +40,18 @@ public class TaskService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
+    public Task update(Long id, Task patch) {
+        Task task = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Таска не найдена: " + id));
+
+        task.setTitle(patch.getTitle());
+        task.setStatus(patch.getStatus());
+        task.setDescription(patch.getDescription());
+        task.setDeadline(patch.getDeadline());
+        task.setAssignee(patch.getAssignee());
+        task.setPriority(patch.getPriority());
+
+        return repo.save(task);
+    }
 }

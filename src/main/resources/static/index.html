@@ -10,9 +10,12 @@
 
     <header class="top-bar">
         <div class="top-left">
-            <button class="menu-btn">
+            <button onclick="WorkerMenu()" class="menu-btn">
                 <img src="images/icons/menu_button.svg" alt="menu" class="top-svg-icon">
             </button>
+
+            <div id="WorkerDropdown" class="dropdown-content"></div>
+
             <span class="logo">Битрикс24</span>
         </div>
 
@@ -241,7 +244,7 @@
             <span>редактирование</span>
             <button class="modal-close" id="modal-close">✕</button>
         </div>
-        <input class="modal-input" id="modal-title" placeholder="Название задачи">
+        <input class="modal-input" id="modal-title" placeholder="Название">
         <div class="modal-actions">
             <button class="btn-primary" id="modal-save">Сохранить</button>
             <button class="btn-danger" id="modal-delete">Удалить</button>
@@ -257,7 +260,7 @@
         </div>
 
         <div class="modal-field">
-            <input class="modal-input" id="create-title" placeholder="Название задачи">
+            <input class="modal-input" id="create-title" placeholder="Название">
         </div>
 
         <div class="modal-field">
@@ -286,7 +289,7 @@
         <div class="modal-actions">
             <button class="btn-primary" id="create-modal-save">Создать</button>
             <button class="btn-danger" id="create-modal-delete" style="display:none;">Удалить</button>
-            <button class="btn-secondary" id="create-modal-cancel">Отмена</button>
+            <button class="btn-cancel" id="create-modal-cancel">Назад</button>
         </div>
     </div>
 </div>

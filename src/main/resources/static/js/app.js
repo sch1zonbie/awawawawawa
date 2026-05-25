@@ -12,6 +12,16 @@ async function loadTasks() {
     updateCounts();
 }
 
+async function loadWorkers() {
+    const res = await fetch('/api/workers');
+    const workers = await res.json();
+    const dropdown = document.getElementById('WorkerDropdown');
+
+    dropdown.innerHTML = workers
+        .map(w => `<a href="#">${escHtml(w.name)}</a>`)
+        .join('');
+}
+
 function renderCard(task) {
     const card = document.createElement('div');
     card.className = 'task-card';
@@ -31,10 +41,8 @@ function renderCard(task) {
     col.appendChild(card);
 }
 
-// обновление каунтера задачек возле названия каждой колонки
 function updateCounts() {
     ['NEW', 'IN_PROGRESS', 'DONE'].forEach(s => {
-        // .children.length это количество карточек (?)
         const count = document.getElementById('col-' + s).children.length;
         const col = document.querySelector(`.kanban-col[data-status="${s}"]`);
         col.querySelector('.col-count').textContent = count;
@@ -46,7 +54,7 @@ function openCreateModal(status, task = null) {
     editingId = task ? task.id : null;
 
     document.querySelector('#create-modal .modal-header span').textContent =
-        task ? 'Редактирование задачи' : 'Новая задача';
+        task ? 'Отредактируйте задачу' : 'Новая задача';
     document.getElementById('create-modal-save').textContent =
         task ? 'Сохранить' : 'Создать';
     document.getElementById('create-modal-delete').style.display =
@@ -122,37 +130,6 @@ document.getElementById('create-modal-delete').addEventListener('click', async (
     loadTasks();
 });
 
-document.querySelectorAll('.col-add-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const status = btn.dataset.status;
-        const form = document.getElementById('form-' + status);
-
-        form.style.display = form.style.display === 'none' ? 'flex' : 'none';
-        if (form.style.display === 'flex') {
-            form.querySelector('.quick-input').focus();
-        }
-    });
-});
-
-document.querySelectorAll('.quick-input').forEach(input => {
-    input.addEventListener('keydown', async e => {
-
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault(); // отменяет стандартное поведение браузера (перенос строки)
-            const raw = input.value.trim();
-            if (!raw) return;
-            const status = input.closest('.kanban-col').dataset.status;
-
-            const match = raw.match(/^([^#]+)(#.*)?$/);
-            const title = match ? match[1].trim() : raw;
-
-            await createTask(title, status);
-            input.value = '';
-            document.getElementById('form-' + status).style.display = 'none';
-        }
-    });
-});
-
 let draggedId = null;
 
 function onDragStart(e) {
@@ -169,22 +146,18 @@ document.querySelectorAll('.kanban-col').forEach(col => {
         e.preventDefault();
         col.classList.add('drag-over');
     });
-
     col.addEventListener('dragleave', () => {
         col.classList.remove('drag-over');
     });
-
     col.addEventListener('drop', async e => {
         e.preventDefault();
         col.classList.remove('drag-over');
         const newStatus = col.dataset.status;
-
         await fetch(`${API}/${draggedId}/status`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus })
         });
-
         loadTasks();
         draggedId = null;
     });
@@ -207,7 +180,13 @@ updateClock();
 setInterval(updateClock, 1000);
 
 function WorkerMenu() {
-    document.getElementById("WorkerDropdown").classList.toggle("show");
+    const dropdown = document.getElementById("WorkerDropdown");
+    const sidebar  = document.querySelector(".sidebar");
+    const isOpen   = dropdown.classList.toggle("show");
+
+    sidebar.style.marginTop = isOpen
+        ? dropdown.scrollHeight + 'px'
+        : '0';
 }
 
 window.onclick = function(event) {
@@ -224,3 +203,4 @@ window.onclick = function(event) {
 }
 
 loadTasks();
+loadWorkers();
