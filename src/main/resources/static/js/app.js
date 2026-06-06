@@ -15,11 +15,19 @@ async function loadTasks() {
 async function loadWorkers() {
     const res = await fetch('/api/workers');
     const workers = await res.json();
+
     const dropdown = document.getElementById('WorkerDropdown');
+    const assigneeSelect = document.getElementById('create-assignee');
 
     dropdown.innerHTML = workers
         .map(w => `<a href="#">${escHtml(w.name)}</a>`)
         .join('');
+
+    assigneeSelect.innerHTML =
+        `<option value="">Исполнитель</option>` +
+        workers.map(w =>
+            `<option value="${w.name}">${escHtml(w.name)}</option>`
+        ).join('');
 }
 
 function renderCard(task) {
@@ -89,18 +97,31 @@ document.getElementById('create-modal').addEventListener('click', e => {
 
 document.getElementById('create-modal-save').addEventListener('click', async () => {
     const title = document.getElementById('create-title').value.trim();
+    const deadline = document.getElementById('create-deadline').value;
+    const assignee = document.getElementById('create-assignee').value;
+
     if (!title) {
         document.getElementById('create-title').focus();
         return;
     }
 
+    if (!assignee) {
+        document.getElementById('create-assignee').focus();
+        return;
+    }
+
+    if (!deadline) {
+        document.getElementById('create-deadline').focus();
+        return;
+    }
+
     const body = {
         title,
-        status:      creatingStatus,
+        status: creatingStatus,
         description: document.getElementById('create-desc').value.trim(),
-        deadline:    document.getElementById('create-deadline').value || null,
-        assignee:    document.getElementById('create-assignee').value.trim(),
-        priority:    document.getElementById('create-priority').value,
+        deadline,
+        assignee,
+        priority: document.getElementById('create-priority').value,
     };
 
     if (editingId) {
@@ -187,19 +208,6 @@ function WorkerMenu() {
     sidebar.style.marginTop = isOpen
         ? dropdown.scrollHeight + 'px'
         : '0';
-}
-
-window.onclick = function(event) {
-    if (!event.target.matches('.menu-btn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
 }
 
 loadTasks();

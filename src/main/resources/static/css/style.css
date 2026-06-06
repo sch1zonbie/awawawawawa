@@ -457,7 +457,7 @@ body {
     padding: 6px 12px; font-size: 12px; cursor: pointer;
     display: flex; align-items: center; gap: 4px;
 }
-/*отображаемое кол-во задач в конкретной колонне*/
+
 .col-count {
     background: rgba(255,255,255,0.25);
     border-radius: 10px; padding: 1px 8px; font-size: 11px;

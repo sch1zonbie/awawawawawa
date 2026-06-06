@@ -11,7 +11,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/tasks")
 
-//автоматом создает конструктор для файнал полей
 @RequiredArgsConstructor
 public class TaskController {
 
