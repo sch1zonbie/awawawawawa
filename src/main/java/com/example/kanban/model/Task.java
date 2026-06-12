@@ -36,4 +36,8 @@ public class Task {
     public enum Status {
         NEW, IN_PROGRESS, DONE
     }
+
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private PersonalBoard board;
 }

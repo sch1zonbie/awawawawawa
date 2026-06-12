@@ -20,7 +20,7 @@ async function loadWorkers() {
     const assigneeSelect = document.getElementById('create-assignee');
 
     dropdown.innerHTML = workers
-        .map(w => `<a href="#">${escHtml(w.name)}</a>`)
+        .map(w => `<a href="#" onclick="loadBoard(${w.id})">${escHtml(w.name)}</a>`)
         .join('');
 
     assigneeSelect.innerHTML =
@@ -212,3 +212,17 @@ function WorkerMenu() {
 
 loadTasks();
 loadWorkers();
+
+async function loadBoard(workerId) {
+    const res = await fetch(`/api/boards/worker/${workerId}`);
+    const board = await res.json();
+
+    ['NEW', 'IN_PROGRESS', 'DONE'].forEach(s => {
+        document.getElementById('col-' + s).innerHTML = '';
+    });
+
+    board.tasks.forEach(renderCard);
+    updateCounts();
+
+    WorkerMenu();
+}

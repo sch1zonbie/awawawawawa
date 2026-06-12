@@ -3,6 +3,8 @@ package com.example.kanban.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table
 @Data
@@ -10,7 +12,12 @@ import lombok.Data;
 public class PersonalBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long board_id;
 
+    @OneToOne
+    @JoinColumn(name = "workers_id")
+    private Worker worker;
 
+    @OneToMany(mappedBy = "board")
+    private List<Task> tasks;
 }
