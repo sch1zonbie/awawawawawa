@@ -1,5 +1,6 @@
 package com.example.kanban.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,6 +19,7 @@ public class PersonalBoard {
     @JoinColumn(name = "workers_id")
     private Worker worker;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "board")
     private List<Task> tasks;
 }

@@ -21,7 +21,9 @@ public class Task {
 
     private LocalDate deadline;
 
-    private String assignee;
+    @ManyToOne
+    @JoinColumn(name = "worker_id")
+    private Worker assignee;
 
     @Enumerated(EnumType.STRING)
     private Priority priority;

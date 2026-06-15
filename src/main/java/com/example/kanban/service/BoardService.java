@@ -3,7 +3,6 @@ package com.example.kanban.service;
 import com.example.kanban.dto.BoardDto;
 import com.example.kanban.dto.TaskDto;
 import com.example.kanban.model.PersonalBoard;
-import com.example.kanban.model.Task;
 import com.example.kanban.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ public class BoardService {
                     taskDto.setTitle(task.getTitle());
                     taskDto.setDescription(task.getDescription());
                     taskDto.setDeadline(task.getDeadline());
-                    taskDto.setAssignee(task.getAssignee());
+                    taskDto.setWorkerId(task.getAssignee().getId());
                     taskDto.setPriority(task.getPriority());
                     taskDto.setStatus(task.getStatus());
                     return taskDto;

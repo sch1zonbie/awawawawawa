@@ -12,7 +12,7 @@ public class TaskDto {
     private String title;
     private String description;
     private LocalDate deadline;
-    private String assignee;
+    private Long workerId;
     private Priority priority;
     private Status status;
 }

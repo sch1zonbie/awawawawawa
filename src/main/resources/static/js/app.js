@@ -1,6 +1,7 @@
 const API = '/api/tasks';
 let editingId = null;
 let creatingStatus = null;
+let currentWorkerId = null;
 
 async function loadTasks() {
     const res = await fetch(API);
@@ -26,7 +27,7 @@ async function loadWorkers() {
     assigneeSelect.innerHTML =
         `<option value="">Исполнитель</option>` +
         workers.map(w =>
-            `<option value="${w.name}">${escHtml(w.name)}</option>`
+            `<option value="${w.id}">${escHtml(w.name)}</option>`
         ).join('');
 }
 
@@ -37,9 +38,8 @@ function renderCard(task) {
     card.draggable = true;
 
     card.innerHTML = `
-        <div class="task-title">${escHtml(task.title)}</div>
-        ${task.tags ? `<div class="task-tags">${escHtml(task.tags)}</div>` : ''}
-    `;
+    <div class="task-title">${escHtml(task.title)}</div>
+`;
 
     card.addEventListener('dragstart', onDragStart);
     card.addEventListener('dragend', onDragEnd);
@@ -120,7 +120,7 @@ document.getElementById('create-modal-save').addEventListener('click', async () 
         status: creatingStatus,
         description: document.getElementById('create-desc').value.trim(),
         deadline,
-        assignee,
+        assignee: { id: assignee },   // ← было просто assignee
         priority: document.getElementById('create-priority').value,
     };
 
@@ -142,7 +142,7 @@ document.getElementById('create-modal-save').addEventListener('click', async () 
     }
 
     closeCreateModal();
-    loadTasks();
+    // loadTasks();
 });
 
 document.getElementById('create-modal-delete').addEventListener('click', async () => {
@@ -179,7 +179,11 @@ document.querySelectorAll('.kanban-col').forEach(col => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status: newStatus })
         });
-        loadTasks();
+        if (currentWorkerId) {
+            loadBoard(currentWorkerId);
+        } else {
+            loadTasks();
+        }
         draggedId = null;
     });
 });
@@ -210,12 +214,13 @@ function WorkerMenu() {
         : '0';
 }
 
-loadTasks();
 loadWorkers();
+loadBoard(1);
 
 async function loadBoard(workerId) {
+    currentWorkerId = workerId;
     const res = await fetch(`/api/boards/worker/${workerId}`);
-    const board = await res.json();
+    const board = await res.json();  // ← эта строка потерялась
 
     ['NEW', 'IN_PROGRESS', 'DONE'].forEach(s => {
         document.getElementById('col-' + s).innerHTML = '';
@@ -223,6 +228,4 @@ async function loadBoard(workerId) {
 
     board.tasks.forEach(renderCard);
     updateCounts();
-
-    WorkerMenu();
 }

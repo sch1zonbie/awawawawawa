@@ -1,6 +1,7 @@
 package com.example.kanban.service;
 
 import com.example.kanban.model.Task;
+import com.example.kanban.repository.BoardRepository;
 import com.example.kanban.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,18 +9,21 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
-//автосоздание конструктора для TaskRepository
 @RequiredArgsConstructor
 public class TaskService {
 
     private final TaskRepository repo;
+    private final BoardRepository boardRepo;
 
     public List<Task> getAll() {
         return repo.findAll();
     }
 
     public Task create(Task task) {
+        if (task.getAssignee() != null) {
+            boardRepo.findByWorkerId(task.getAssignee().getId())
+                    .ifPresent(task::setBoard);
+        }
         return repo.save(task);
     }
 
@@ -51,6 +55,11 @@ public class TaskService {
         task.setDeadline(patch.getDeadline());
         task.setAssignee(patch.getAssignee());
         task.setPriority(patch.getPriority());
+
+        if (patch.getAssignee() != null) {
+            boardRepo.findByWorkerId(patch.getAssignee().getId())
+                    .ifPresent(task::setBoard);
+        }
 
         return repo.save(task);
     }
