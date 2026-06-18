@@ -124,6 +124,7 @@ document.getElementById('create-modal-save').addEventListener('click', async () 
         priority: document.getElementById('create-priority').value,
     };
 
+    //это что за покемон?
     if (editingId) {
         await fetch(`${API}/${editingId}`, {
             method: 'PATCH',
@@ -142,7 +143,6 @@ document.getElementById('create-modal-save').addEventListener('click', async () 
     }
 
     closeCreateModal();
-    // loadTasks();
 });
 
 document.getElementById('create-modal-delete').addEventListener('click', async () => {
@@ -220,7 +220,7 @@ loadBoard(1);
 async function loadBoard(workerId) {
     currentWorkerId = workerId;
     const res = await fetch(`/api/boards/worker/${workerId}`);
-    const board = await res.json();  // ← эта строка потерялась
+    const board = await res.json();
 
     ['NEW', 'IN_PROGRESS', 'DONE'].forEach(s => {
         document.getElementById('col-' + s).innerHTML = '';

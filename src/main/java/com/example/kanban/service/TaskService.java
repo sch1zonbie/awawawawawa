@@ -49,6 +49,7 @@ public class TaskService {
         Task task = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Таска не найдена: " + id));
 
+        //так. это что такое а?
         task.setTitle(patch.getTitle());
         task.setStatus(patch.getStatus());
         task.setDescription(patch.getDescription());

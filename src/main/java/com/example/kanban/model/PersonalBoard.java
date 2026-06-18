@@ -16,7 +16,7 @@ public class PersonalBoard {
     private Long board_id;
 
     @OneToOne
-    @JoinColumn(name = "workers_id")
+    @JoinColumn(name = "workers_id") //разобраться наконец-то с этой колонной и workers и worker_id и workerID расплодились тут
     private Worker worker;
 
     @JsonIgnore

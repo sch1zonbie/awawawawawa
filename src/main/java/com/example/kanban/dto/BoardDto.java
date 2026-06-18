@@ -9,5 +9,4 @@ public class BoardDto {
     private Long id;
     private Long workerId;
     private List<TaskDto> tasks;
-
 }
