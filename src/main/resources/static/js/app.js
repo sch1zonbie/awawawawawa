@@ -207,6 +207,15 @@ setInterval(updateClock, 1000);
 function WorkerMenu() {
     const dropdown = document.getElementById("WorkerDropdown");
     const sidebar  = document.querySelector(".sidebar");
+
+    if (!dropdown.querySelector('.add-worker-btn')) {
+        const addBtn = document.createElement('button');
+        addBtn.className = 'add-worker-btn';
+        addBtn.textContent = 'Добавить исполнителя';
+        addBtn.onclick = () => openWorkerModal();
+        dropdown.prepend(addBtn);
+    }
+
     const isOpen   = dropdown.classList.toggle("show");
 
     sidebar.style.marginTop = isOpen
@@ -228,4 +237,31 @@ async function loadBoard(workerId) {
 
     board.tasks.forEach(renderCard);
     updateCounts();
+}
+
+function openWorkerModal() {
+    document.getElementById('worker-modal').style.display = 'flex';
+}
+
+function closeWorkerModal() {
+    document.getElementById('worker-modal').style.display = 'none';
+    document.getElementById('worker-name').value = '';
+}
+
+async function saveWorker() {
+    const name = document.getElementById('worker-name').value.trim();
+    if (!name) return;
+
+    const res = await fetch('/api/workers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name })
+    });
+
+    console.log('status:', res.status);
+    const worker = await res.json();
+    console.log('worker:', worker);
+
+    await loadWorkers();
+    closeWorkerModal();
 }

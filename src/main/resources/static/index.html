@@ -134,7 +134,6 @@
     <main class="main-content">
         <div class="project-header">
             <div class="project-title-row">
-
                 <span class="project-title">Мой проект</span>
                 <div class="project-actions">
                     <button class="btn-video">Видеозвонок</button>
@@ -238,6 +237,7 @@
     </aside>
 </div>
 
+<!-- Модалка редактирования (старая, не трогаем) -->
 <div class="modal-overlay" id="modal" style="display:none;">
     <div class="modal">
         <div class="modal-header">
@@ -252,6 +252,21 @@
     </div>
 </div>
 
+<!-- Модалка нового исполнителя — отдельно, не вложена -->
+<div class="modal-overlay" id="worker-modal" style="display:none;">
+    <div class="modal">
+        <div class="modal-header">
+            <span>новый исполнитель</span>
+            <button class="modal-close" onclick="closeWorkerModal()">✕</button>
+        </div>
+        <input class="modal-input" id="worker-name" placeholder="Имя">
+        <div class="modal-actions">
+            <button class="btn-primary" onclick="saveWorker()">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модалка создания/редактирования задачи -->
 <div class="modal-overlay" id="create-modal" style="display:none;">
     <div class="modal">
         <div class="modal-header">

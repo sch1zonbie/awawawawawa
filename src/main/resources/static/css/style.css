@@ -105,6 +105,23 @@ body {
     transition: background 0.15s;
 }
 
+.dropdown-content button.add-worker-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 14px;
+    color: var(--text);
+    background: none;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.dropdown-content button.add-worker-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
 .dropdown-content a:hover {background: rgba(255, 255, 255, 0.05);}
 .show {display:block;}
 
